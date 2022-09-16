@@ -40,14 +40,16 @@ function clicked(){
         positionsOnBoard[id][1] = 'x';
         xpos.push(id);
         x_turn = false;
+        let image = document.createElement('img');
+        image.setAttribute('src', './img/red.png');
+        image.classList.add('img');
+        this.appendChild(image);
     }
     if(x_turn == false && positionsOnBoard[id][1] == null){
         positionsOnBoard[id][1] = 'o';
         opos.push(id);
         x_turn = true;
     }
-    //console.log(positionsOnBoard);
-    //console.log(winningPositions[0]);
     console.log(xpos, opos);
     if(checkForWinning3(opos)){
         console.log("o won");
