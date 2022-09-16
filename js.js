@@ -8,6 +8,7 @@ let x_turn = true;
 let xpos = [];
 let opos = [];
 let images = [];
+let winner = '';
 
 for(let i = 0; i < rects.length; i++){
     rects[i].setAttribute("id", i);
@@ -44,6 +45,7 @@ function clicked(){
         image.setAttribute('src', './img/red.png');
         image.classList.add('img');
         images.push(image);
+        console.log(images);
         this.appendChild(image);
     }
     if(x_turn == false && positionsOnBoard[id][1] == null){
@@ -57,14 +59,12 @@ function clicked(){
         this.appendChild(image);
     }
     console.log(xpos, opos);
-    if(checkForWinning3(opos)){
-        alert("o won");
-        setInterval(function(){}, 500);
+    if(checkForWinning3(opos) && opos != []){
+        winner = 'o';
         ResetGame();
     }
-    if(checkForWinning3(xpos)){
-        alert("x won");
-        setInterval(function(){}, 500);
+    if(checkForWinning3(xpos) && xpos != []){
+        winner = 'x';
         ResetGame();
     }
 }
@@ -83,9 +83,6 @@ function checkForWinning3(pos){
 function ResetGame(){
     xpos = [];
     opos = [];
-    for(let i = 0; i < images.length; i++){
-        images[i].parentNode.removeChild(images[i]);
-    }
     positionsOnBoard = [
         [0, null],
         [1, null],
@@ -98,16 +95,24 @@ function ResetGame(){
         [8, null]
     ];
     x_turn = true;
+    setTimeout(function(){removeImages()}, 250);
 }
 
 function showTurn(){
     if(x_turn){
-        turnHeader.innerHTML = "Turn: X";
-    }
-    else{
         turnHeader.innerHTML = "Turn: Y";
     }
-    
+    else{
+        turnHeader.innerHTML = "Turn: X";
+    }
+}
+
+function removeImages(){
+    for(let i = 0; i < images.length; i++){
+        images[i].parentNode.removeChild(images[i]);
+    }
+    images = [];
+    alert(winner + " Won!");
 }
 
 
