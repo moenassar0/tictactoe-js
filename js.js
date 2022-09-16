@@ -49,14 +49,18 @@ function clicked(){
         positionsOnBoard[id][1] = 'o';
         opos.push(id);
         x_turn = true;
+        let image = document.createElement('img');
+        image.setAttribute('src', './img/yellow.png');
+        image.classList.add('img');
+        this.appendChild(image);
     }
     console.log(xpos, opos);
     if(checkForWinning3(opos)){
-        console.log("o won");
+        alert("o won");
         ResetGame();
     }
     if(checkForWinning3(xpos)){
-        console.log("x won");
+        alert("x won");
         ResetGame();
     }
 
