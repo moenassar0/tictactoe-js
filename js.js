@@ -7,6 +7,7 @@ let x_turn = true;
 
 let xpos = [];
 let opos = [];
+let images = [];
 
 for(let i = 0; i < rects.length; i++){
     rects[i].setAttribute("id", i);
@@ -18,7 +19,6 @@ const winningPositions = [
     [3, 4, 5],
     [6, 7, 8]
 ]
-
 
 let positionsOnBoard = [
     [0, null],
@@ -43,6 +43,7 @@ function clicked(){
         let image = document.createElement('img');
         image.setAttribute('src', './img/red.png');
         image.classList.add('img');
+        images.push(image);
         this.appendChild(image);
     }
     if(x_turn == false && positionsOnBoard[id][1] == null){
@@ -52,6 +53,7 @@ function clicked(){
         let image = document.createElement('img');
         image.setAttribute('src', './img/yellow.png');
         image.classList.add('img');
+        images.push(image);
         this.appendChild(image);
     }
     console.log(xpos, opos);
@@ -80,7 +82,23 @@ function checkForWinning3(pos){
 }
 
 function ResetGame(){
-
+    xpos = [];
+    opos = [];
+    for(let i = 0; i < images.length; i++){
+        images[i].parentNode.removeChild(images[i]);
+    }
+    positionsOnBoard = [
+        [0, null],
+        [1, null],
+        [2, null],
+        [3, null],
+        [4, null],
+        [5, null],
+        [6, null],
+        [7, null],
+        [8, null]
+    ];
+    x_turn = true;
 }
 
 
