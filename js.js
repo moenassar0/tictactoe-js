@@ -16,9 +16,17 @@ for(let i = 0; i < rects.length; i++){
 }
 
 const winningPositions = [
+    //Rows
     [0, 1, 2],
     [3, 4, 5],
-    [6, 7, 8]
+    [6, 7, 8],
+    //Columns
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    //Diagonals
+    [0, 4, 8],
+    [6, 4, 2]
 ]
 
 let positionsOnBoard = [
@@ -36,7 +44,6 @@ let positionsOnBoard = [
 function clicked(){
     showTurn();
     let id = parseInt(this.getAttribute("id"));
-    //console.log(id);
     if(x_turn == true && positionsOnBoard[id][1] == null){
         positionsOnBoard[id][1] = 'x';
         xpos.push(id);
@@ -70,7 +77,7 @@ function clicked(){
 }
 
 function checkForWinning3(pos){
-    for(let y = 0; y < 3; y++){
+    for(let y = 0; y < 8; y++){
         let ar1 = winningPositions[y];
         let ar2 = pos;
         if(ar1.every(r => ar2.includes(r))){
