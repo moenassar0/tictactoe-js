@@ -50,7 +50,12 @@ function clicked(){
     //console.log(winningPositions[0]);
     console.log(xpos, opos);
     if(checkForWinning3(opos)){
-        
+        console.log("o won");
+        ResetGame();
+    }
+    if(checkForWinning3(xpos)){
+        console.log("x won");
+        ResetGame();
     }
 
 }
@@ -60,11 +65,16 @@ function checkForWinning3(pos){
         let ar1 = winningPositions[y];
         let ar2 = pos;
         if(ar1.every(r => ar2.includes(r))){
-            console.log('Found all of', ar1, 'in', ar2);
+            return true;
           }else{
-            console.log('Did not find all of', ar1, 'in', ar2);
+            //console.log('Did not find all of', ar1, 'in', ar2);
           }
     }
+    return false;
+}
+
+function ResetGame(){
+
 }
 
 
