@@ -33,7 +33,7 @@ let positionsOnBoard = [
 ];
 
 function clicked(){
-    turnHeader.innerHTML = "Turn: " + x_turn;
+    showTurn();
     let id = parseInt(this.getAttribute("id"));
     //console.log(id);
     if(x_turn == true && positionsOnBoard[id][1] == null){
@@ -59,13 +59,14 @@ function clicked(){
     console.log(xpos, opos);
     if(checkForWinning3(opos)){
         alert("o won");
+        setInterval(function(){}, 500);
         ResetGame();
     }
     if(checkForWinning3(xpos)){
         alert("x won");
+        setInterval(function(){}, 500);
         ResetGame();
     }
-
 }
 
 function checkForWinning3(pos){
@@ -74,9 +75,7 @@ function checkForWinning3(pos){
         let ar2 = pos;
         if(ar1.every(r => ar2.includes(r))){
             return true;
-          }else{
-            //console.log('Did not find all of', ar1, 'in', ar2);
-          }
+        }
     }
     return false;
 }
@@ -99,6 +98,16 @@ function ResetGame(){
         [8, null]
     ];
     x_turn = true;
+}
+
+function showTurn(){
+    if(x_turn){
+        turnHeader.innerHTML = "Turn: X";
+    }
+    else{
+        turnHeader.innerHTML = "Turn: Y";
+    }
+    
 }
 
 
