@@ -1,7 +1,9 @@
 const grid_container = document.getElementById('grid-container');
 const rects = grid_container.children;
 const turnHeader = document.getElementById("turn");
+const restartBTN = document.getElementById("restart");
 
+restartBTN.addEventListener("click", e => {ResetGame()});
 
 let x_turn = true;
 
@@ -119,7 +121,15 @@ function removeImages(){
         images[i].parentNode.removeChild(images[i]);
     }
     images = [];
-    alert(winner + " Won!");
+    if(winner == ''){
+
+    }
+    else{
+        alert(winner + " Won!");
+        winner = '';
+        showTurn();
+    }
+    
 }
 
 
